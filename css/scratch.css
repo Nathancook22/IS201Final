@@ -1,0 +1,294 @@
+
+/* Import fonts */
+body {
+    background-color: #f5d4d4; /* Muted red tone */
+    font-family: 'Open Sans', sans-serif;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+.header {
+    background-color: #b30000;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 1.2rem;
+}
+
+/* Content styling */
+.content {
+    
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.content ol,
+.content ul {
+    font-size: large;
+    display: table;
+    margin: 0 auto 20px auto;
+    text-align: left;
+}
+
+/* Quotes block */
+.quotes {
+    background-color: #fff0f0;
+    padding: 30px 20px;
+    margin: 30px;
+    border-left: 6px solid #b30000;
+    font-style: italic;
+    text-align: center;
+}
+
+.quotes h2 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Main image */
+.main-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 30px auto;
+    border: 3px solid #b30000;
+    border-radius: 10px;
+}
+
+/* Links */
+a {
+    color: #b30000;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.main-image,
+iframe {
+    transition: transform 0.3s ease;
+}
+
+.main-image:hover,
+iframe:hover {
+    transform: scale(1.03);
+}
+.divider {
+    border-top: 2px solid #b30000;
+    margin: 40px auto;
+    width: 60%;
+}
+blockquote {
+    font-size: 1.2rem;
+    color: #444;
+    margin: 20px auto;
+    padding: 15px 30px;
+    border-left: 4px solid #b30000;
+    max-width: 600px;
+    background-color: #ffeaea;
+}
+html {
+    scroll-behavior: smooth;
+}
+@keyframes punchIn {
+    0% {
+        transform: scale(0.9) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1) rotate(-2deg);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(1.05) rotate(2deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    animation: punchIn 1s ease-out;
+}
+.header h1 {
+    font-size: 3rem;
+    animation: punchIn 1s ease-out;
+}
+
+.header p {
+    font-size: 1.3rem;
+}
+
+.content h2,
+.quotes h2 {
+    font-size: 2rem;
+    margin-top: 30px;
+}
+
+.content p,
+.quotes p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.content li,
+.quotes li {
+    font-size: 1.1rem;
+}
+
+blockquote {
+    font-size: 1.3rem;
+}
+
+a {
+    font-size: 1.15rem;
+}
+.content,
+.quotes {
+    padding: 40px 20px;
+}
+.header {
+    background-image: url('../assets/img/Boxing2.jpeg'); /* Update this path if needed */
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4); /* dark overlay for text contrast */
+}
+.header h1 {
+    font-size: 4rem;
+    animation: punchIn 1s ease-out;
+    text-shadow: 2px 2px 6px #000;
+}
+
+.header p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    text-shadow: 1px 1px 4px #000;
+}
+/* General body and background */
+body {
+    background-color: #f0dede;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header with parallax effect */
+.header {
+    background-image: url('../assets/img/boxing-ring.jpg'); /* adjust if needed */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    margin: 0;
+}
+
+.header p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+/* Content area with centered list */
+.content {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.content ol {
+    list-style-position: inside;
+    max-width: 700px;
+    text-align: left;
+    font-size: 1.2rem;
+    background-color: #ffeaea;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Sub-lists inside the ordered list */
+.content ol ul {
+    list-style-type: circle;
+    margin-left: 1.5rem;
+    margin-top: 10px;
+}
+
+/* Add some spacing between list items */
+.content ol li {
+    margin-bottom: 25px;
+}
+
+/* Media responsive (optional) */
+@media (max-width: 600px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    .header p {
+        font-size: 1.1rem;
+    }
+    .content ol {
+        font-size: 1rem;
+        padding: 20px;
+    }
+}
+.video-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fef6f6;
+    margin: 40px auto;
+}
+
+.video-section h2 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #b30000;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.video-section iframe {
+    max-width: 100%;
+    width: 560px;
+    height: 315px;
+    border: 4px solid #b30000;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+.tableau-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+    max-width: 100%;
+    padding: 20px;
+    background-color: #fff0f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}

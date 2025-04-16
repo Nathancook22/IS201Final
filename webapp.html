@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Snake Game</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Passion for Boxing</title>
+    <link href="css/scratch.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/snake.jpg">
+</head>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    canvas {
+      background-color: #000;
+      box-shadow: 0 0 10px #333;
+    }
+    #score {
+      font-size: 1.2rem;
+      margin: 10px;
+    }
+    #playAgain {
+      display: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    #playAgain:hover {
+      background-color: #0056b3;
+    }
+    
+  </style>
+</head>
+<body>
+    <h1>Snake Game</h1>
+    <div style="margin-bottom: 10px;">
+      <label for="playerName">Enter your name:</label>
+      <input type="text" id="playerName" placeholder="Your name here" />
+    </div>
+  
+    <div id="score">Score: 0</div>
+    <div id="highScore">High Score: 0 (Anonymous)</div>
+  
+    <canvas id="game" width="400" height="400"></canvas>
+    <button id="playAgain">Play Again</button>
+  
+    <a href="scratch.html" style="margin-top: 20px;">Stop playing with Snakes</a>
+  
+    <script>
+      const canvas = document.getElementById("game");
+      const ctx = canvas.getContext("2d");
+      const scoreEl = document.getElementById("score");
+      const highScoreEl = document.getElementById("highScore");
+      const playAgainBtn = document.getElementById("playAgain");
+      const playerNameInput = document.getElementById("playerName");
+  
+      const gridSize = 20;
+      const tileCount = canvas.width / gridSize;
+  
+      let snake, food, dx, dy, score, gameInterval, started;
+  
+      let highScore = localStorage.getItem("snakeHighScore") || 0;
+      let highScorePlayer = localStorage.getItem("snakeHighScorePlayer") || "Anonymous";
+  
+      highScoreEl.textContent = `High Score: ${highScore} (${highScorePlayer})`;
+  
+      function initGame() {
+        snake = [{ x: 9, y: 9 }];
+        dx = 0;
+        dy = 0;
+        score = 0;
+        food = randomPosition();
+        scoreEl.textContent = "Score: 0";
+        started = false;
+        clearInterval(gameInterval);
+        drawGame();
+      }
+  
+      function startGame() {
+        if (!started) {
+          started = true;
+          gameInterval = setInterval(gameLoop, 100);
+        }
+      }
+  
+      function gameLoop() {
+        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+  
+        // Game Over
+        if (
+          head.x < 0 || head.x >= tileCount ||
+          head.y < 0 || head.y >= tileCount ||
+          snake.some(segment => segment.x === head.x && segment.y === head.y)
+        ) {
+          clearInterval(gameInterval);
+          playAgainBtn.style.display = "block";
+  
+          if (score > highScore) {
+            highScore = score;
+            const playerName = playerNameInput.value || "Anonymous";
+            highScorePlayer = playerName;
+  
+            localStorage.setItem("snakeHighScore", highScore);
+            localStorage.setItem("snakeHighScorePlayer", highScorePlayer);
+            highScoreEl.textContent = `High Score: ${highScore} (${highScorePlayer})`;
+            alert("🎉 New High Score!");
+          }
+  
+          return;
+        }
+  
+        snake.unshift(head);
+  
+        if (head.x === food.x && head.y === food.y) {
+          score++;
+          scoreEl.textContent = "Score: " + score;
+          food = randomPosition();
+        } else {
+          snake.pop();
+        }
+  
+        drawGame();
+      }
+  
+      function drawGame() {
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+        // Snake
+        ctx.fillStyle = "#00f";
+        snake.forEach(segment => {
+          ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
+        });
+  
+        // Food
+        ctx.fillStyle = "#f00";
+        ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
+      }
+  
+      function randomPosition() {
+        let pos;
+        do {
+          pos = {
+            x: Math.floor(Math.random() * tileCount),
+            y: Math.floor(Math.random() * tileCount)
+          };
+        } while (snake.some(segment => segment.x === pos.x && segment.y === pos.y));
+        return pos;
+      }
+  
+      document.addEventListener("keydown", (e) => {
+        startGame();
+        switch (e.key) {
+          case "ArrowUp": if (dy === 0) { dx = 0; dy = -1; } break;
+          case "ArrowDown": if (dy === 0) { dx = 0; dy = 1; } break;
+          case "ArrowLeft": if (dx === 0) { dx = -1; dy = 0; } break;
+          case "ArrowRight": if (dx === 0) { dx = 1; dy = 0; } break;
+        }
+      });
+  
+      playAgainBtn.addEventListener("click", () => {
+        playAgainBtn.style.display = "none";
+        initGame();
+      });
+  
+      initGame();
+    </script>
+  </body>
+  </html>
